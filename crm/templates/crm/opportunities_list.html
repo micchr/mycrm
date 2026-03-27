@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Opportunités</h2>
+
+<a href="/opportunities/add/" class="btn btn-primary mb-3">Ajouter une opportunité</a>
+
+<table class="table table-striped">
+<tr>
+    <th>Titre</th>
+    <th>Client</th>
+    <th>Montant</th>
+    <th>Statut</th>
+    <th>Actions</th>
+</tr>
+
+{% for o in opportunities %}
+<tr>
+    <td>{{ o.title }}</td>
+    <td>{{ o.client.name }}</td>
+    <td>{{ o.amount }}</td>
+    <td>{{ o.get_stage_display }}</td>
+    <td>
+        <a href="/opportunities/{{ o.id }}/edit/" class="btn btn-warning btn-sm">Modifier</a>
+        <a href="/opportunities/{{ o.id }}/delete/" class="btn btn-danger btn-sm">Supprimer</a>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="4">Aucune opportunité.</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

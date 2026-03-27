@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Tâches</h2>
+
+<a href="/tasks/add/" class="btn btn-primary mb-3">Ajouter une tâche</a>
+
+<table class="table table-striped">
+<tr>
+    <th>Titre</th>
+    <th>Pour opportunité</th>
+    <th>Échéance</th>
+    <th>Fait ?</th>
+    <th>Actions</th>
+</tr>
+
+{% for t in tasks %}
+<tr>
+    <td>{{ t.title }}</td>
+    <td>{{ t.opportunity.title }}</td>
+    <td>{{ t.due_date }}</td>
+    <td>{{ t.done }}</td>
+    <td>
+        <a href="/tasks/{{ t.id }}/edit/" class="btn btn-warning btn-sm">Modifier</a>
+        <a href="/tasks/{{ t.id }}/delete/" class="btn btn-danger btn-sm">Supprimer</a>
+    </td>
+</tr>
+{% empty %}
+<tr><td colspan="4">Aucune tâche.</td></tr>
+{% endfor %}
+</table>
+
+{% endblock %}

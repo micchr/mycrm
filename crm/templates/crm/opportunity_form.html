@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{% if opportunity %}Modifier l'opportunité{% else %}Créer une opportunité{% endif %}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Titre</label>
+        <input name="title" class="form-control" value="{{ opportunity.title }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Montant (€)</label>
+        <input name="amount" type="number" class="form-control" 
+               value="{{ opportunity.amount }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Statut</label>
+        <select name="stage" class="form-control">
+            <option value="new" {% if opportunity.stage == "new" %}selected{% endif %}>Nouveau</option>
+            <option value="contacted" {% if opportunity.stage == "contacted" %}selected{% endif %}>Contacté</option>
+            <option value="proposal" {% if opportunity.stage == "proposal" %}selected{% endif %}>Proposition</option>
+            <option value="won" {% if opportunity.stage == "won" %}selected{% endif %}>Gagné</option>
+            <option value="lost" {% if opportunity.stage == "lost" %}selected{% endif %}>Perdu</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Client</label>
+        <select name="client_id" class="form-control">
+            {% for c in clients %}
+            <option value="{{ c.id }}" 
+                {% if opportunity.client.id == c.id %}selected{% endif %}>
+                {{ c.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button class="btn btn-success">Enregistrer</button>
+
+</form>
+
+{% endblock %}

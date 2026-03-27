@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{% if contact %}Modifier le contact{% else %}Nouveau contact{% endif %}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Nom</label>
+        <input name="name" class="form-control" value="{{ contact.name }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input name="email" class="form-control" value="{{ contact.email }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Téléphone</label>
+        <input name="phone" class="form-control" value="{{ contact.phone }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Client associé</label>
+        <select name="client_id" class="form-control">
+            {% for c in clients %}
+            <option value="{{ c.id }}" {% if contact.client.id == c.id %}selected{% endif %}>
+                {{ c.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button class="btn btn-success">Enregistrer</button>
+</form>
+
+{% endblock %}

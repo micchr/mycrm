@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Liste des clients</h2>
+
+<a href="/clients/add/" class="btn btn-primary mb-3">Ajouter un client</a>
+
+<table class="table table-striped">
+    <tr>
+        <th>Nom</th>
+        <th>Entreprise</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for client in clients %}
+    <tr>
+        <td>{{ client.name }}</td>
+        <td>{{ client.company }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.phone }}</td>
+        <td>
+            <a href="/clients/{{ client.id }}/edit/" class="btn btn-sm btn-warning">Modifier</a>
+            <a href="/clients/{{ client.id }}/delete/" class="btn btn-sm btn-danger">Supprimer</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="4">Aucun client pour le moment.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

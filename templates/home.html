@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Tableau de bord</h2>
+<p class="text-muted">Vue d’ensemble de votre activité</p>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Clients</div>
+            <div class="card-body">
+                <h3>{{ total_clients }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Opportunités ouvertes</div>
+            <div class="card-body">
+                <h3>{{ open_opportunities }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-header">Valeur du pipeline (€)</div>
+            <div class="card-body">
+                <h3>{{ pipeline_value }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-header">Tâches en retard</div>
+            <div class="card-body">
+                <h3>{{ overdue_tasks }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

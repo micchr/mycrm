@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{% if task %}Modifier la tâche{% else %}Créer une tâche{% endif %}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Titre</label>
+        <input name="title" class="form-control" value="{{ task.title }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Date d'échéance</label>
+        <input name="due_date" type="date" class="form-control" value="{{ task.due_date }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Opportunité associée</label>
+        <select name="opportunity_id" class="form-control">
+            {% for o in opportunities %}
+            <option value="{{ o.id }}" {% if task.opportunity.id == o.id %}selected{% endif %}>
+                {{ o.title }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-check mb-3">
+        <input name="done" type="checkbox" class="form-check-input" {% if task.done %}checked{% endif %}>
+        <label class="form-check-label">Tâche terminée</label>
+    </div>
+
+    <button class="btn btn-success">Enregistrer</button>
+</form>
+
+{% endblock %}

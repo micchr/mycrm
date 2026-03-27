@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{% if client %}Modifier le client{% else %}Créer un client{% endif %}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Nom</label>
+        <input name="name" class="form-control" value="{{ client.name }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Entreprise</label>
+        <input name="company" class="form-control" value="{{ client.company }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input name="email" class="form-control" value="{{ client.email }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Téléphone</label>
+        <input name="phone" class="form-control" value="{{ client.phone }}">
+    </div>
+
+    <button class="btn btn-success">Enregistrer</button>
+</form>
+
+{% endblock %}
