@@ -268,6 +268,7 @@ def task_create(request):
 def task_edit(request, id):
     
     task = Task.objects.get(id=id)
+    print(f"Date passée à la tâche : {task.due_date}")
 
     # Permission : owner de l'opportunité associée
     if not request.user.is_staff and task.opportunity.owner != request.user:

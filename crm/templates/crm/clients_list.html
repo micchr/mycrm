@@ -11,6 +11,7 @@
         <th>Entreprise</th>
         <th>Email</th>
         <th>Téléphone</th>
+        <th>Actif</th>
         <th>Actions</th>
     </tr>
 
@@ -20,6 +21,7 @@
         <td>{{ client.company }}</td>
         <td>{{ client.email }}</td>
         <td>{{ client.phone }}</td>
+        <td>{{ client.is_active }}</td>
         <td>
             <a href="/clients/{{ client.id }}/edit/" class="btn btn-sm btn-warning">Modifier</a>
             <a href="/clients/{{ client.id }}/delete/" class="btn btn-sm btn-danger">Supprimer</a>

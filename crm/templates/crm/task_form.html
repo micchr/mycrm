@@ -13,7 +13,7 @@
 
     <div class="mb-3">
         <label>Date d'échéance</label>
-        <input name="due_date" type="date" class="form-control" value="{{ task.due_date }}">
+        <input name="due_date" type="date" class="form-control" value="{{ task.due_date | date:'Y-m-d' }}">
     </div>
 
     <div class="mb-3">
